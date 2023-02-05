@@ -120,6 +120,7 @@ end
 repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game:GetService("Players").LocalPlayer
 repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui
+repeat task.wait() until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Streaks.MainFrame.Claim and game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Streaks.Buttons.Close
 
 local PlayerGui = game:GetService("Players").LocalPlayer.PlayerGui
 
@@ -133,4 +134,17 @@ PlayerGui.ChildAdded:Connect(function(child)
         PlayerGui.PromptWearLastOutfit:WaitForChild("PromptResult"):FireServer(true)
     end
 end)
+
+local __ClaimButton = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Streaks.MainFrame.Claim
+local __ExitButton = game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui.Streaks.Buttons.Close
+local __Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
+
+if __ClaimButton.Parent.Parent.Visible == true and firesignal then
+    for i,Signal in next, __Signals do
+        firesignal(__ClaimButton[Signal])
+    end
+    for i,Signal in next, __Signals do
+        firesignal(__ExitButton[Signal])
+    end
+end
 
