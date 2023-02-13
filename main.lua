@@ -45,7 +45,7 @@ task.spawn(function()
 			local Deleted = false
 			local S_T = game:GetService("TeleportService")
 			local S_H = game:GetService("HttpService")
-			local RandomName = tostring(math.random(1, 999999))
+			local RandomName = "PlsDonateServerHop-Temp"
 			local File = pcall(function()
 				AllIDs = S_H:JSONDecode(readfile(RandomName .. ".json"))
 			end)
